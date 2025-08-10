@@ -167,7 +167,6 @@ const Home = () => {
         </Grid>
       </Paper>
 
-      {/* Model Performance Metrics */}
       {data?.model_performance && (
         <Paper elevation={2} sx={{ p: 3, mt: 3 }}>
           <Typography variant="h5" gutterBottom>

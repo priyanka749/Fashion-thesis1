@@ -41,14 +41,14 @@ const ModelResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('🔄 Fetching model predictions and categories...');
+        console.log(' Fetching model predictions and categories...');
         const [predictionsRes, categoriesRes] = await Promise.all([
           axios.get('http://localhost:5000/api/predictions'),
           axios.get('http://localhost:5000/api/categories')
         ]);
         
-        console.log('✅ Predictions response:', predictionsRes.data);
-        console.log('✅ Categories response:', categoriesRes.data);
+        console.log(' Predictions response:', predictionsRes.data);
+        console.log(' Categories response:', categoriesRes.data);
         
         setPredictions(predictionsRes.data);
         setCategories(categoriesRes.data.categories || []);
@@ -60,7 +60,7 @@ const ModelResults = () => {
         
         setLoading(false);
       } catch (err) {
-        console.error('❌ Error fetching data:', err);
+        console.error(' Error fetching data:', err);
         setError('Failed to load model predictions. Make sure your API server is running.');
         setLoading(false);
       }
@@ -107,7 +107,7 @@ const ModelResults = () => {
   };
 
   const getTrendIcon = (direction) => {
-    return direction === 'up' ? '📈' : '📉';
+    return direction === 'up' ? '' : '';
   };
 
   return (

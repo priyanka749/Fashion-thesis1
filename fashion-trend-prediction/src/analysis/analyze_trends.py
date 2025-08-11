@@ -13,14 +13,14 @@ import os
 def analyze_fashion_trends():
     """Analyze and visualize the fashion trends data"""
     
-    # Load the trends data
+
     with open('data/raw/google_trends.json', 'r') as f:
         data = json.load(f)
     
     print("🎨 Fashion Trends Analysis")
     print("=" * 50)
     
-    # Extract all trending items and their categories
+
     categories = {}
     all_trends = []
     
@@ -28,8 +28,7 @@ def analyze_fashion_trends():
         category = group_name.replace('group_', '').replace('_', ' ').title()
         keywords = group_data['keywords']
         categories[category] = keywords
-        
-        # Calculate average trend scores
+     
         trend_data = group_data['data']
         for keyword in keywords:
             scores = []
@@ -54,14 +53,14 @@ def analyze_fashion_trends():
     print()
     
     # Display top trending items
-    print("🔥 TOP 15 TRENDING FASHION ITEMS:")
+    print(" TOP 15 TRENDING FASHION ITEMS:")
     print("-" * 50)
     top_items = df.nlargest(15, 'avg_trend_score')
     for i, row in top_items.iterrows():
         print(f"{row['avg_trend_score']:.1f} - {row['item']} ({row['category']})")
     
     print()
-    print("📊 TRENDING ITEMS BY CATEGORY:")
+    print(" TRENDING ITEMS BY CATEGORY:")
     print("-" * 50)
     for category, items in categories.items():
         print(f"\n{category}:")
@@ -69,7 +68,7 @@ def analyze_fashion_trends():
             trend_score = df[df['item'] == item]['avg_trend_score'].values[0]
             print(f"  • {item} (score: {trend_score:.1f})")
     
-    # Create visualizations
+ 
     create_trend_visualizations(df, categories)
     
     return df, categories
@@ -79,11 +78,10 @@ def create_trend_visualizations(df, categories):
     
     os.makedirs('outputs', exist_ok=True)
     
-    # Set style
     plt.style.use('default')
     sns.set_palette("husl")
     
-    # 1. Top trending items chart
+    
     plt.figure(figsize=(14, 8))
     top_20 = df.nlargest(20, 'avg_trend_score')
     
@@ -95,7 +93,7 @@ def create_trend_visualizations(df, categories):
     plt.title('Top 20 Trending Fashion Items (2024-2025)', fontsize=16, fontweight='bold')
     plt.gca().invert_yaxis()
     
-    # Add value labels
+ 
     for i, (bar, score) in enumerate(zip(bars, top_20['avg_trend_score'])):
         plt.text(bar.get_width() + 0.5, bar.get_y() + bar.get_height()/2, 
                 f'{score:.1f}', va='center', ha='left', fontweight='bold')
@@ -104,7 +102,7 @@ def create_trend_visualizations(df, categories):
     plt.savefig('outputs/top_trending_fashion_items.png', dpi=300, bbox_inches='tight')
     plt.show()
     
-    # 2. Category comparison
+    
     plt.figure(figsize=(14, 8))
     category_avg = df.groupby('category')['avg_trend_score'].mean().sort_values(ascending=False)
     
@@ -123,11 +121,10 @@ def create_trend_visualizations(df, categories):
     plt.tight_layout()
     plt.savefig('outputs/category_trends_comparison.png', dpi=300, bbox_inches='tight')
     plt.show()
-    
-    # 3. Heat map of trends by category
+ 
     plt.figure(figsize=(16, 10))
     
-    # Create pivot table for heatmap
+  
     category_items = []
     trend_scores = []
     item_names = []
@@ -139,7 +136,7 @@ def create_trend_visualizations(df, categories):
             trend_scores.append(score)
             item_names.append(item)
     
-    # Create heatmap data
+   
     unique_categories = list(categories.keys())
     max_items = max(len(items) for items in categories.values())
     
@@ -152,7 +149,7 @@ def create_trend_visualizations(df, categories):
             heatmap_data[i, j] = score
             heatmap_labels[i][j] = item
     
-    # Mask zeros
+ 
     mask = heatmap_data == 0
     
     ax = sns.heatmap(heatmap_data, 
@@ -183,11 +180,7 @@ def create_trend_visualizations(df, categories):
     plt.savefig('outputs/trend_score_distribution.png', dpi=300, bbox_inches='tight')
     plt.show()
     
-    print("✅ All visualizations saved to 'outputs/' folder!")
-    print("   - top_trending_fashion_items.png")
-    print("   - category_trends_comparison.png") 
-    print("   - fashion_trends_heatmap.png")
-    print("   - trend_score_distribution.png")
+ 
 
 def create_trend_report(df):
     """Create a comprehensive text report"""
@@ -240,21 +233,16 @@ This report analyzes {len(df)} trending fashion items across {df['category'].nun
     with open('outputs/fashion_trends_report.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("📋 Comprehensive report saved to 'outputs/fashion_trends_report.md'")
+    print(" Comprehensive report saved to 'outputs/fashion_trends_report.md'")
 
 def main():
     """Main execution function"""
-    print("🚀 Starting Fashion Trends Analysis...")
+    print(" Starting Fashion Trends Analysis...")
     print()
     
     df, categories = analyze_fashion_trends()
     create_trend_report(df)
     
-    print()
-    print("🎉 Analysis Complete!")
-    print(f"📊 Analyzed {len(df)} trending fashion items")
-    print(f"📈 {len(categories)} fashion categories covered")
-    print("🎯 Perfect for women aged 20-25 fashion trend research!")
-
+ 
 if __name__ == "__main__":
     main()

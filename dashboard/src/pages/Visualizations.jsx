@@ -47,7 +47,7 @@ const Visualizations = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {/* Category Distribution */}
+   
         <Grid item xs={12} md={6}>
           <Paper elevation={3} sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
@@ -65,7 +65,7 @@ const Visualizations = () => {
           </Paper>
         </Grid>
 
-        {/* Top Categories */}
+
         <Grid item xs={12} md={6}>
           <Paper elevation={3} sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
@@ -83,7 +83,7 @@ const Visualizations = () => {
           </Paper>
         </Grid>
 
-        {/* Monthly Trends */}
+       
         <Grid item xs={12}>
           <Paper elevation={3} sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>

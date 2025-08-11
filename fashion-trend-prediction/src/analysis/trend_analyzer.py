@@ -153,7 +153,6 @@ class FashionTrendAnalyzer:
                                 if color in text_lower:
                                     color_counts[color] += text_lower.count(color)
         
-        # Create color trend visualization
         self.create_color_visualizations(color_counts)
         
         return {'color_trends': dict(color_counts.most_common(15))}
@@ -192,8 +191,7 @@ class FashionTrendAnalyzer:
         plt.xlabel('Frequency')
         plt.title('Top 20 Fashion Keywords', fontsize=16, fontweight='bold')
         plt.gca().invert_yaxis()
-        
-        # Add value labels on bars
+      
         for bar, count in zip(bars, counts):
             plt.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2, 
                     str(count), va='center', ha='left')
@@ -209,11 +207,10 @@ class FashionTrendAnalyzer:
         Args:
             temporal_data: List of DataFrames with temporal data
         """
-        # Google Trends over time
+       
         if len(temporal_data) > 0 and 'trend_value' in temporal_data[0].columns:
             trends_df = temporal_data[0]
-            
-            # Top trending keywords
+       
             top_keywords = trends_df.groupby('keyword')['trend_value'].mean().nlargest(10).index
             
             plt.figure(figsize=(15, 8))
@@ -296,7 +293,7 @@ class FashionTrendAnalyzer:
             'gold': '#FFD700', 'silver': '#C0C0C0', 'coral': '#FF7F50'
         }
         
-        # Create color trend chart
+
         colors = list(top_colors.keys())
         counts = list(top_colors.values())
         bar_colors = [color_map.get(color, '#1f77b4') for color in colors]
@@ -309,7 +306,7 @@ class FashionTrendAnalyzer:
         plt.title('Fashion Color Trends', fontsize=16, fontweight='bold')
         plt.xticks(rotation=45)
         
-        # Add value labels on bars
+
         for bar, count in zip(bars, counts):
             plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.5,
                     str(count), ha='center', va='bottom')
@@ -325,12 +322,12 @@ class FashionTrendAnalyzer:
         Args:
             datasets: Dictionary of DataFrames by source
         """
-        # Analyze all aspects
+      
         keyword_analysis = self.analyze_keyword_trends(datasets)
         temporal_analysis = self.analyze_temporal_trends(datasets)
         color_analysis = self.analyze_color_trends(datasets)
         
-        # Create summary dashboard
+      
         fig = make_subplots(
             rows=2, cols=2,
             subplot_titles=('Data Sources Overview', 'Top Keywords', 
@@ -399,7 +396,7 @@ class FashionTrendAnalyzer:
         Returns:
             Report content as string
         """
-        # Perform all analyses
+   
         keyword_analysis = self.analyze_keyword_trends(datasets)
         temporal_analysis = self.analyze_temporal_trends(datasets)
         color_analysis = self.analyze_color_trends(datasets)
@@ -447,8 +444,7 @@ Top fashion colors mentioned:
 2. Most trending color: {list(color_analysis['color_trends'].keys())[0] if color_analysis['color_trends'] else 'N/A'}
 3. Data richness: {keyword_analysis['unique_keywords']} unique fashion terms identified
 """
-        
-        # Save report
+ 
         with open(f'{self.output_dir}/fashion_trend_report.md', 'w', encoding='utf-8') as f:
             f.write(report)
         
@@ -469,21 +465,11 @@ def main():
         return
     
     print("Starting comprehensive fashion trend analysis...")
-    
-    # Create all visualizations and analyses
+
     analyzer.create_comprehensive_dashboard(datasets)
-    
-    # Generate report
+
     report = analyzer.generate_report(datasets)
-    
-    print("\nAnalysis complete! Check the 'outputs' folder for:")
-    print("- fashion_wordcloud.png")
-    print("- top_keywords.png") 
-    print("- temporal_trends.png")
-    print("- color_trends.png")
-    print("- interactive_trends.html")
-    print("- fashion_dashboard.html")
-    print("- fashion_trend_report.md")
+   
 
 if __name__ == "__main__":
     main()

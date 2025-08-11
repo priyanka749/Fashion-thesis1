@@ -15,7 +15,7 @@ def test_google_trends():
     try:
         from pytrends.request import TrendReq
         
-        print("✅ Google Trends library imported successfully")
+        print(" Google Trends library imported successfully")
         
         # Create simple trends request
         pytrends = TrendReq(hl='en-US', tz=360)
@@ -28,22 +28,22 @@ def test_google_trends():
         trend_data = pytrends.interest_over_time()
         
         if not trend_data.empty:
-            print(f"✅ Successfully collected trend data for {len(fashion_keywords)} keywords")
+            print(f" Successfully collected trend data for {len(fashion_keywords)} keywords")
             print(f"   Data shape: {trend_data.shape}")
             print(f"   Date range: {trend_data.index[0]} to {trend_data.index[-1]}")
             
             # Save test data
             os.makedirs('data/raw', exist_ok=True)
             trend_data.to_csv('data/raw/test_trends.csv')
-            print("✅ Test data saved to data/raw/test_trends.csv")
+            print(" Test data saved to data/raw/test_trends.csv")
             
             return True
         else:
-            print("❌ No trend data received")
+            print(" No trend data received")
             return False
             
     except Exception as e:
-        print(f"❌ Google Trends test failed: {e}")
+        print(f" Google Trends test failed: {e}")
         return False
 
 def test_text_processing():
@@ -53,7 +53,7 @@ def test_text_processing():
         import pandas as pd
         from collections import Counter
         
-        print("✅ Text processing libraries imported")
+        print(" Text processing libraries imported")
         
         # Sample fashion text data
         sample_texts = [
@@ -75,13 +75,13 @@ def test_text_processing():
         
         keyword_counts = Counter(found_keywords)
         
-        print(f"✅ Extracted {len(found_keywords)} keywords from sample texts")
+        print(f" Extracted {len(found_keywords)} keywords from sample texts")
         print(f"   Top keywords: {dict(keyword_counts.most_common(5))}")
         
         return True
         
     except Exception as e:
-        print(f"❌ Text processing test failed: {e}")
+        print(f" Text processing test failed: {e}")
         return False
 
 def test_visualization():
@@ -91,7 +91,7 @@ def test_visualization():
         import pandas as pd
         import numpy as np
         
-        print("✅ Visualization libraries imported")
+        print(" Visualization libraries imported")
         
         # Create sample data
         keywords = ['dress', 'jeans', 'shoes', 'bag', 'top']
@@ -109,12 +109,12 @@ def test_visualization():
         plt.savefig('outputs/test_chart.png', dpi=150, bbox_inches='tight')
         plt.close()
         
-        print("✅ Test visualization created and saved to outputs/test_chart.png")
+        print(" Test visualization created and saved to outputs/test_chart.png")
         
         return True
         
     except Exception as e:
-        print(f"❌ Visualization test failed: {e}")
+        print(f" Visualization test failed: {e}")
         return False
 
 def create_sample_dataset():
@@ -143,19 +143,19 @@ def create_sample_dataset():
         os.makedirs('data/processed', exist_ok=True)
         df.to_csv('data/processed/sample_fashion_data.csv', index=False)
         
-        print("✅ Sample dataset created with 8 fashion entries")
+        print(" Sample dataset created with 8 fashion entries")
         print(f"   Columns: {list(df.columns)}")
         print(f"   Sources: {df['source'].unique()}")
         
         return True
         
     except Exception as e:
-        print(f"❌ Sample dataset creation failed: {e}")
+        print(f" Sample dataset creation failed: {e}")
         return False
 
 def main():
     """Run all tests"""
-    print("🎨 Fashion Trend Prediction System - Quick Test")
+    print(" Fashion Trend Prediction System - Quick Test")
     print("=" * 60)
     print(f"Test started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
@@ -174,30 +174,27 @@ def main():
     if test_text_processing():
         tests_passed += 1
     print()
-    
-    # Test 3: Visualization
+
     print("Test 3: Visualization")
     if test_visualization():
         tests_passed += 1
     print()
     
-    # Test 4: Sample Dataset
+
     print("Test 4: Sample Dataset Creation")
     if create_sample_dataset():
         tests_passed += 1
     print()
     
     print("=" * 60)
-    print(f"🎯 RESULTS: {tests_passed}/{total_tests} tests passed")
+    print(f" RESULTS: {tests_passed}/{total_tests} tests passed")
     
     if tests_passed == total_tests:
-        print("🎉 All tests passed! Your system is ready to use.")
-        print("\nNext steps:")
-        print("1. Run: python main.py --phase collect")
-        print("2. Run: python main.py --phase preprocess") 
+        print(" All tests passed! Your system is ready to use.")
+      
         print("3. Run: python main.py --phase analyze")
     else:
-        print("❌ Some tests failed. Please check the error messages above.")
+        print(" Some tests failed. Please check the error messages above.")
     
     print("=" * 60)
 

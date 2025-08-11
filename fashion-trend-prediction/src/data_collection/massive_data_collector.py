@@ -220,7 +220,7 @@ class MassiveFashionDataCollector:
     
     def create_regional_dataset(self, output_file: str = 'data/raw/regional_fashion_trends.csv'):
         """Create dataset with regional variations"""
-        print("🌍 Creating regional fashion trends dataset...")
+        print(" Creating regional fashion trends dataset...")
         
         regions = ['US', 'UK', 'Canada', 'Australia', 'France', 'Germany', 'Italy', 'Japan', 'South Korea', 'Brazil']
         regional_preferences = {
@@ -262,14 +262,13 @@ class MassiveFashionDataCollector:
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
         df.to_csv(output_file, index=False)
         
-        print(f"✅ Regional dataset created with {len(df):,} data points!")
+        print(f" Regional dataset created with {len(df):,} data points!")
         return df
 
 def main():
     """Main function to run the massive data collection"""
     collector = MassiveFashionDataCollector()
-    
-    # Collect main dataset (200 keywords × 2 years = ~146,000 data points)
+
     main_df = collector.collect_massive_dataset(
         output_file='data/raw/massive_fashion_trends.csv',
         num_keywords=200,
@@ -279,8 +278,8 @@ def main():
     # Collect regional dataset
     regional_df = collector.create_regional_dataset()
     
-    print("\n🎉 Massive fashion trend data collection completed!")
-    print(f"📊 Total data points collected: {len(main_df) + len(regional_df):,}")
+    print("\n Massive fashion trend data collection completed!")
+    print(f" Total data points collected: {len(main_df) + len(regional_df):,}")
 
 if __name__ == "__main__":
     main()

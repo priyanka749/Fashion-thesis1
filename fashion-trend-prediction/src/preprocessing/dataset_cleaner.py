@@ -27,33 +27,33 @@ class FashionDatasetCleaner:
         try:
             df_main = pd.read_csv('data/raw/massive_fashion_trends.csv')
             datasets['main'] = df_main
-            print(f"✅ Main Dataset: {len(df_main):,} records")
+            print(f" Main Dataset: {len(df_main):,} records")
         except FileNotFoundError:
-            print("❌ Main dataset not found")
+            print(" Main dataset not found")
             
         # Load regional dataset
         try:
             df_regional = pd.read_csv('data/raw/regional_fashion_trends.csv')
             datasets['regional'] = df_regional
-            print(f"✅ Regional Dataset: {len(df_regional):,} records")
+            print(f" Regional Dataset: {len(df_regional):,} records")
         except FileNotFoundError:
-            print("❌ Regional dataset not found")
+            print(" Regional dataset not found")
             
         # Load original JSON dataset if exists
         try:
             df_json = pd.read_json('data/raw/google_trends.json')
             if not df_json.empty:
                 datasets['json'] = df_json
-                print(f"✅ JSON Dataset: {len(df_json):,} records")
+                print(f" JSON Dataset: {len(df_json):,} records")
         except:
-            print("ℹ️  JSON dataset not available or empty")
+            print("ℹ JSON dataset not available or empty")
             
         return datasets
     
     def clean_main_dataset(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean the main massive dataset"""
         
-        print("\n🧹 CLEANING MAIN DATASET")
+        print("\n CLEANING MAIN DATASET")
         print("-" * 30)
         
         # Make a copy
@@ -93,7 +93,7 @@ class FashionDatasetCleaner:
     def clean_regional_dataset(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean the regional dataset"""
         
-        print("\n🌍 CLEANING REGIONAL DATASET")
+        print("\n CLEANING REGIONAL DATASET")
         print("-" * 30)
         
         df_clean = df.copy()
@@ -143,7 +143,7 @@ class FashionDatasetCleaner:
     def standardize_categories(self, df: pd.DataFrame) -> pd.DataFrame:
         """Standardize category names across datasets"""
         
-        print("\n🏷️ STANDARDIZING CATEGORIES")
+        print("\n STANDARDIZING CATEGORIES")
         print("-" * 30)
         
         # Category mapping for consistency
@@ -225,17 +225,17 @@ class FashionDatasetCleaner:
             # Sort by date and fashion item
             df_unified = df_unified.sort_values(['fashion_item', 'date']).reset_index(drop=True)
             
-            print(f"✅ Unified dataset created: {len(df_unified):,} records")
+            print(f" Unified dataset created: {len(df_unified):,} records")
             
             return df_unified
         else:
-            print("❌ No datasets available for unification")
+            print(" No datasets available for unification")
             return pd.DataFrame()
     
     def add_advanced_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """Add advanced features for AI modeling"""
         
-        print("\n🚀 ADDING ADVANCED FEATURES")
+        print("\n ADDING ADVANCED FEATURES")
         print("-" * 30)
         
         # Time-based features
@@ -278,7 +278,7 @@ class FashionDatasetCleaner:
         df['is_europe'] = df['region'].isin(['UK', 'FRANCE', 'GERMANY', 'ITALY'])
         df['is_asia'] = df['region'].isin(['JAPAN', 'SOUTH KOREA'])
         
-        print(f"✅ Added {len(df.columns)} total features")
+        print(f" Added {len(df.columns)} total features")
         
         return df
     
@@ -291,7 +291,7 @@ class FashionDatasetCleaner:
         # Main clean dataset
         main_output = f"{self.output_dir}/fashion_trends_clean.csv"
         df.to_csv(main_output, index=False)
-        print(f"✅ Clean dataset saved: {main_output}")
+        print(f" Clean dataset saved: {main_output}")
         print(f"   Rows: {len(df):,}")
         print(f"   Columns: {len(df.columns)}")
         print(f"   Size: ~{df.memory_usage(deep=True).sum() / 1024 / 1024:.1f} MB")
@@ -309,7 +309,7 @@ class FashionDatasetCleaner:
         
         summary_output = f"{self.output_dir}/fashion_trends_summary.csv"
         summary_df.to_csv(summary_output, index=False)
-        print(f"✅ Summary dataset saved: {summary_output}")
+        print(f"Summary dataset saved: {summary_output}")
         
         # Create a modeling-ready dataset
         modeling_columns = [
@@ -323,14 +323,14 @@ class FashionDatasetCleaner:
         modeling_df = df[modeling_columns].copy()
         modeling_output = f"{self.output_dir}/fashion_trends_modeling.csv"
         modeling_df.to_csv(modeling_output, index=False)
-        print(f"✅ Modeling dataset saved: {modeling_output}")
+        print(f" Modeling dataset saved: {modeling_output}")
         
         return main_output, summary_output, modeling_output
     
     def generate_data_report(self, df: pd.DataFrame):
         """Generate a comprehensive data quality report"""
         
-        print("\n📊 DATA QUALITY REPORT")
+        print("\n DATA QUALITY REPORT")
         print("="*50)
         
         # Basic statistics
@@ -343,14 +343,14 @@ class FashionDatasetCleaner:
         # Data completeness
         missing_data = df.isnull().sum()
         if missing_data.sum() > 0:
-            print(f"\n❌ Missing Data:")
+            print(f"\n Missing Data:")
             for col, missing in missing_data[missing_data > 0].items():
                 print(f"   {col}: {missing:,} ({missing/len(df)*100:.1f}%)")
         else:
             print(f"\n✅ No Missing Data - 100% Complete!")
         
         # Popularity score distribution
-        print(f"\n📈 Popularity Score Statistics:")
+        print(f"\n Popularity Score Statistics:")
         print(f"   Mean: {df['popularity_score'].mean():.1f}")
         print(f"   Median: {df['popularity_score'].median():.1f}")
         print(f"   Std Dev: {df['popularity_score'].std():.1f}")
@@ -364,17 +364,17 @@ class FashionDatasetCleaner:
             print(f"   {category}: {count:,} ({percentage:.1f}%)")
         
         # Top trending items
-        print(f"\n🔥 Top 10 Trending Items (by avg popularity):")
+        print(f"\n Top 10 Trending Items (by avg popularity):")
         top_items = df.groupby('fashion_item')['popularity_score'].mean().sort_values(ascending=False).head(10)
         for i, (item, score) in enumerate(top_items.items(), 1):
             print(f"   {i:2d}. {item}: {score:.1f}")
         
-        print(f"\n✅ Dataset is ready for AI modeling!")
+        print(f"\n Dataset is ready for AI modeling!")
 
 def main():
     """Main function to clean and consolidate datasets"""
     
-    print("🚀 FASHION TRENDS DATASET CLEANER")
+    print(" FASHION TRENDS DATASET CLEANER")
     print("="*60)
     
     cleaner = FashionDatasetCleaner()
@@ -383,14 +383,14 @@ def main():
     datasets = cleaner.load_and_analyze_datasets()
     
     if not datasets:
-        print("❌ No datasets found to clean!")
+        print(" No datasets found to clean!")
         return
     
     # Create unified dataset
     df_unified = cleaner.create_unified_dataset(datasets)
     
     if df_unified.empty:
-        print("❌ Failed to create unified dataset!")
+        print(" Failed to create unified dataset!")
         return
     
     # Add advanced features
@@ -402,12 +402,12 @@ def main():
     # Generate report
     cleaner.generate_data_report(df_final)
     
-    print(f"\n🎉 DATASET CLEANING COMPLETE!")
+    print(f"\n DATASET CLEANING COMPLETE!")
     print("="*60)
     print("Files created:")
     for file in output_files:
-        print(f"✅ {file}")
-    print("\nYour clean, unified dataset is ready for AI modeling! 🚀")
+        print(f" {file}")
+    print("\nYour clean, unified dataset is ready for AI modeling! ")
 
 if __name__ == "__main__":
     main()

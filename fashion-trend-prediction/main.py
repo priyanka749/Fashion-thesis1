@@ -23,7 +23,7 @@ def run_data_collection():
     print("PHASE 1: DATA COLLECTION")
     print("=" * 60)
     
-    # Google Trends
+  
     print("\n1. Collecting Google Trends data...")
     try:
         trends_collector = GoogleTrendsCollector()
@@ -37,8 +37,7 @@ def run_data_collection():
     try:
         blog_scraper = FashionBlogScraper()
         print("Note: Blog scraping requires careful consideration of robots.txt and ToS")
-        # Uncomment the line below to enable blog scraping
-        # blog_scraper.scrape_multiple_sources()
+ 
         print("✓ Blog scraping setup completed (disabled for demo)")
     except Exception as e:
         print(f"✗ Blog scraping failed: {e}")
@@ -137,7 +136,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎨 Fashion Trend Prediction System")
+    print(" Fashion Trend Prediction System")
     print("AI-Based Fashion Trend Analysis for Women Aged 20-25")
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 80)
@@ -162,7 +161,7 @@ def main():
         run_analysis()
     
     print("\n" + "=" * 80)
-    print("🎉 EXECUTION COMPLETED!")
+    print(" EXECUTION COMPLETED!")
     print("=" * 80)
     
     # Show output summary

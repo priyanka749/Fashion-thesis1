@@ -5,7 +5,7 @@ def analyze_fashion_trends():
     with open('data/raw/google_trends.json', 'r') as f:
         data = json.load(f)
 
-    print('📊 FASHION TREND ANALYSIS REPORT')
+    print(' FASHION TREND ANALYSIS REPORT')
     print('='*60)
     print(f'Analysis Date: {datetime.now().strftime("%Y-%m-%d %H:%M")}')
     print(f'Target Demographic: Women aged 20-25')
@@ -15,10 +15,10 @@ def analyze_fashion_trends():
 
     for group_name, group_data in data['trend_data'].items():
         category = group_name.replace('group_', '').replace('_', ' ').title()
-        print(f'🌟 {category}')
+        print(f' {category}')
         print('-' * 40)
         
-        # Calculate average trends
+    
         avg_trends = {}
         for keyword in group_data['keywords']:
             total = sum(week_data[keyword] for week_data in group_data['data'].values())
@@ -28,28 +28,18 @@ def analyze_fashion_trends():
         sorted_trends = sorted(avg_trends.items(), key=lambda x: x[1], reverse=True)
         
         for i, (item, score) in enumerate(sorted_trends, 1):
-            status = '🔥' if score >= 90 else '⭐' if score >= 80 else '📈'
+            status = '' if score >= 90 else '' if score >= 80 else ''
             print(f'  {i}. {item.title()}: {score:.1f} {status}')
             all_trends.append((item, score, category))
         print()
 
-    print('📈 TOP 10 OVERALL TRENDING ITEMS:')
+    print(' TOP 10 OVERALL TRENDING ITEMS:')
     print('-' * 40)
     top_trends = sorted(all_trends, key=lambda x: x[1], reverse=True)[:10]
     
     for i, (item, score, category) in enumerate(top_trends, 1):
-        status = '🔥' if score >= 95 else '⭐' if score >= 90 else '📈'
+        status = '' if score >= 95 else '' if score >= 90 else ''
         print(f'{i:2d}. {item.title()} ({category}): {score:.1f} {status}')
-
-    print('\n🎯 KEY INSIGHTS FOR WOMEN 20-25:')
-    print('-' * 40)
-    print('• Minimalist aesthetic trends (Clean Girl) dominate')
-    print('• Oversized formal wear gaining popularity') 
-    print('• Athletic-inspired casual wear (Tennis skirts) trending')
-    print('• Classic denim styles (High-waisted) remain popular')
-    print('• Vintage-inspired footwear (Mary Jane) making comeback')
-    print('• Small accessories (Mini bags) preferred over large bags')
-    print('• Y2K revival continues in aesthetic preferences')
 
 if __name__ == "__main__":
     analyze_fashion_trends()

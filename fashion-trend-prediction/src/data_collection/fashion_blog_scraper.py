@@ -156,10 +156,10 @@ class FashionBlogScraper:
             
             print(f"Found {len(articles)} articles from {url}")
             
-            # Rate limiting
+        
             time.sleep(3)
         
-        # Save data
+    
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         
         with open(save_path, 'w', encoding='utf-8') as f:
@@ -176,7 +176,7 @@ def main():
     """
     scraper = FashionBlogScraper()
     
-    # Note: Always respect robots.txt and terms of service
+  
     print("Note: This scraper should only be used for educational/research purposes")
     print("Always check robots.txt and terms of service before scraping")
     

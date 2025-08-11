@@ -20,9 +20,3 @@ for region in ['US', 'UK', 'France', 'Japan', 'Germany']:
     for item, score in region_data.items():
         print(f'  {item.title()}: {score:.1f}')
 
-print('\n DATASET SUMMARY:')
-print('='*50)
-print(' Main Dataset: 146,000 data points')
-print(' Regional Dataset: 45,000 data points') 
-print(' Combined Total: 191,000+ data points')
-print(' Ready for AI model training!')

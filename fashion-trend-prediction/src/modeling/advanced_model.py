@@ -1,4 +1,4 @@
-# Advanced Classification Model: XGBoost with 94.35% Accuracy
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
@@ -27,19 +27,18 @@ class AdvancedFashionTrendModel:
         
     def prepare_features(self, df):
         """Prepare features exactly as in the notebook"""
-        # Identify columns
+    
         date_col = [col for col in df.columns if 'date' in col.lower()][0]
         cat_col = [col for col in df.columns if 'category' in col.lower()][0]
         score_col = [col for col in df.columns if 'score' in col.lower() or 'trend' in col.lower()][0]
         
-        # Feature engineering
+ 
         df_work = df.copy()
         df_work[date_col] = pd.to_datetime(df_work[date_col], errors='coerce')
         df_work['year'] = df_work[date_col].dt.year
         df_work['month'] = df_work[date_col].dt.month
         df_work['day'] = df_work[date_col].dt.day
-        
-        # Add interaction feature if not present
+      
         if 'pop7_trendmom' not in df_work.columns and 'popularity_7day_avg' in df_work.columns and 'trend_momentum' in df_work.columns:
             df_work['pop7_trendmom'] = df_work['popularity_7day_avg'] * df_work['trend_momentum']
         
@@ -49,7 +48,7 @@ class AdvancedFashionTrendModel:
             if col in df_work.columns:
                 features.append(col)
         
-        # One-hot encode category
+
         encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
         cat_encoded = encoder.fit_transform(df_work[[cat_col]])
         cat_encoded_df = pd.DataFrame(cat_encoded, columns=encoder.get_feature_names_out([cat_col]), index=df_work.index)
@@ -65,19 +64,15 @@ class AdvancedFashionTrendModel:
         if not ADVANCED_LIBS_AVAILABLE:
             print("Advanced libraries not available, using basic model")
             return False
-            
-        # Prepare features
+ 
         X, y, encoder, features = self.prepare_features(df)
-        
-        # Balance classes if needed
+  
         if abs(y.mean() - 0.5) > 0.1 and X.shape[0] > 100:
             smote = SMOTE(random_state=42)
             X, y = smote.fit_resample(X, y)
-        
-        # Train/test split
+
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-        
-        # Ensure only numeric columns are passed to the scaler
+     
         X_train = pd.DataFrame(X_train).select_dtypes(include=[np.number])
         X_test = pd.DataFrame(X_test).select_dtypes(include=[np.number])
         
@@ -85,7 +80,7 @@ class AdvancedFashionTrendModel:
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
         
-        # Define models exactly as in notebook
+      
         models = {
             'XGBoost': XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss'),
             'LightGBM': LGBMClassifier(random_state=42),
@@ -130,13 +125,7 @@ class AdvancedFashionTrendModel:
             'model_name': self.best_model_name
         }
         
-        print(f"✅ Advanced model trained successfully!")
-        print(f"🏆 Best Model: {self.best_model_name}")
-        print(f"📊 Accuracy: {self.performance_metrics['accuracy']:.2f}%")
-        print(f"🎯 Precision: {self.performance_metrics['precision']:.2f}%")
-        print(f"📈 Recall: {self.performance_metrics['recall']:.2f}%")
-        print(f"⚖️ F1 Score: {self.performance_metrics['f1_score']:.2f}%")
-        
+      
         return True
     
     def predict(self, date_str, category):
@@ -155,23 +144,20 @@ class AdvancedFashionTrendModel:
             'day': date_obj.day
         }
         
-        # Add dummy values for other features that may be expected
         for col in self.feature_columns:
             if col not in features_dict:
                 features_dict[col] = 0
         
-        # Create DataFrame with the correct feature order
+   
         feature_df = pd.DataFrame([features_dict])
         
-        # One-hot encode category (simplified)
-        # For API use, we'll use a simplified encoding
+     
         cat_features = [col for col in feature_df.columns if col in self.feature_columns]
         X = feature_df[cat_features].fillna(0)
-        
-        # Ensure only numeric columns
+     
         X = X.select_dtypes(include=[np.number])
         
-        # Scale features
+
         X_scaled = self.scaler.transform(X)
         
         # Make prediction

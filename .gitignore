@@ -1,0 +1,18 @@
+# Ignore large data, model, and output files
+fashion-trend-prediction/data/raw/
+fashion-trend-prediction/data/processed/
+fashion-trend-prediction/outputs/
+fashion-trend-prediction/__pycache__/
+fashion-trend-prediction/src/**/__pycache__/
+*.pyc
+*.png
+*.json
+*.csv
+*.ipynb
+# Node/Vite build artifacts
+dashboard/node_modules/
+dashboard/dist/
+dashboard/package-lock.json
+# System files
+.DS_Store
+Thumbs.db

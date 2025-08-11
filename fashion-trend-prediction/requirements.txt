@@ -1,0 +1,56 @@
+# Core Data Science Libraries
+pandas==2.0.3
+numpy==1.24.3
+matplotlib==3.7.2
+seaborn==0.12.2
+scikit-learn==1.3.0
+scipy==1.11.1
+
+# Deep Learning
+tensorflow==2.13.0
+torch==2.0.1
+torchvision==0.15.2
+
+# Data Collection
+requests==2.31.0
+beautifulsoup4==4.12.2
+scrapy==2.10.0
+selenium==4.11.2
+tweepy==4.14.0
+google-api-python-client==2.97.0
+
+# Image Processing
+opencv-python==4.8.0.76
+Pillow==10.0.0
+
+# NLP Libraries
+nltk==3.8.1
+spacy==3.6.1
+transformers==4.32.1
+textblob==0.17.1
+
+# Trend Analysis
+pytrends==4.9.2
+
+# Visualization
+plotly==5.15.0
+wordcloud==1.9.2
+
+# Database
+pymongo==4.4.1
+sqlalchemy==2.0.19
+
+# API and Web
+flask==2.3.2
+fastapi==0.101.1
+streamlit==1.25.0
+
+# Utilities
+python-dotenv==1.0.0
+tqdm==4.65.0
+jupyter==1.0.0
+ipykernel==6.25.0
+
+# Configuration
+pyyaml==6.0.1
+configparser==5.3.0

@@ -1,0 +1,161 @@
+
+DATA_COLLECTION:
+
+  GOOGLE_TRENDS:
+    language: "en-US"
+    timezone: 360
+    timeframe: "today 12-m"
+    max_keywords_per_group: 5
+    
+  # Pinterest API
+  PINTEREST:
+    rate_limit_delay: 2  # seconds
+    max_pins_per_query: 100
+    
+  # Web Scraping
+  WEB_SCRAPING:
+    rate_limit_delay: 3  # seconds
+    timeout: 10  # seconds
+    max_articles_per_source: 20
+    
+  # Fashion Keywords for Data Collection
+  FASHION_KEYWORDS:
+    clothing_types:
+      - "crop top"
+      - "midi skirt" 
+      - "wide leg jeans"
+      - "blazer"
+      - "maxi dress"
+      - "bodysuit"
+      - "cargo pants"
+      - "oversized shirt"
+      - "jumpsuit"
+      - "leather jacket"
+      
+    styles:
+      - "y2k fashion"
+      - "cottagecore"
+      - "dark academia"
+      - "streetwear"
+      - "minimalist style"
+      - "bohemian style"
+      - "vintage fashion"
+      - "grunge style"
+      
+    colors:
+      - "neon colors"
+      - "pastel colors"
+      - "neutral tones"
+      - "earth tones"
+      
+    patterns:
+      - "animal print"
+      - "floral print"
+      - "geometric pattern"
+      - "stripes"
+
+
+DATA_PROCESSING:
+  # Text Processing
+  TEXT_PROCESSING:
+    max_features: 1000
+    ngram_range: [1, 2]
+    min_token_length: 2
+    
+  # Feature Engineering
+  FEATURE_ENGINEERING:
+    use_tfidf: true
+    use_word_embeddings: false
+    scale_numerical_features: true
+
+# Machine Learning Settings
+MACHINE_LEARNING:
+  # Model Configuration
+  MODELS:
+    random_forest:
+      n_estimators: 100
+      random_state: 42
+      
+    gradient_boosting:
+      random_state: 42
+      
+    svm:
+      random_state: 42
+      kernel: "rbf"
+      
+    naive_bayes:
+      alpha: 1.0
+  
+  # Training Settings
+  TRAINING:
+    test_size: 0.2
+    cross_validation_folds: 5
+    random_state: 42
+
+# Analysis Settings
+ANALYSIS:
+  # Visualization
+  VISUALIZATION:
+    figure_size: [12, 8]
+    dpi: 300
+    style: "seaborn-v0_8"
+    color_palette: "husl"
+    
+  # Word Cloud
+  WORDCLOUD:
+    width: 800
+    height: 400
+    max_words: 100
+    background_color: "white"
+    colormap: "viridis"
+    
+  # Trend Analysis
+  TREND_ANALYSIS:
+    top_keywords_count: 20
+    top_colors_count: 15
+    min_trend_value: 10
+
+# File Paths
+PATHS:
+  # Data Directories
+  DATA_RAW: "data/raw"
+  DATA_PROCESSED: "data/processed"
+  DATA_EXTERNAL: "data/external"
+  
+  # Output Directories
+  MODELS: "models"
+  OUTPUTS: "outputs"
+  
+  # Specific Files
+  PINTEREST_DATA: "data/raw/pinterest_data.json"
+  GOOGLE_TRENDS_DATA: "data/raw/google_trends.json"
+  FASHION_BLOGS_DATA: "data/raw/fashion_blogs.json"
+  
+# Target Demographics
+TARGET_DEMOGRAPHICS:
+  age_range: [20, 25]
+  gender: "women"
+  primary_platforms:
+    - "Instagram"
+    - "TikTok"
+    - "Pinterest"
+    - "Twitter"
+    
+# Ethical Guidelines
+ETHICS:
+  data_privacy: true
+  user_consent_required: true
+  bias_monitoring: true
+  sustainability_focus: true
+  inclusive_representation: true
+  
+# API Endpoints (placeholder - fill with actual endpoints)
+API_ENDPOINTS:
+  pinterest_api: "https://api.pinterest.com/v5"
+  google_trends_api: null  # Uses pytrends library
+  
+# Logging Configuration
+LOGGING:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/fashion_trend_prediction.log"

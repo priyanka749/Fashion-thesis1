@@ -1,6 +1,4 @@
-"""
-Simple test script to verify the fashion trend prediction system
-"""
+
 
 import sys
 import os

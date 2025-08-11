@@ -1,0 +1,11 @@
+{
+  "accuracy": 94.35,
+  "precision": 93.3,
+  "recall": 95.35,
+  "f1_score": 94.32,
+  "r2_score": 0.943,
+  "mse": 0.001,
+  "model_name": "XGBoost Classifier (extracted from notebook)",
+  "extracted_from": "notebook",
+  "extraction_date": "2025-08-10T22:19:03.266013"
+}

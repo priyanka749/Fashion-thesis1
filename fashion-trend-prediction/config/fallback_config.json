@@ -1,0 +1,24 @@
+{
+  "category_items": {
+    "Accessories": ["Gold Chain Necklace", "Leather Crossbody Bag", "Silk Scarf", "Statement Earrings", "Designer Sunglasses", "Pearl Bracelet", "Vintage Belt", "Minimalist Watch", "Crystal Hair Clips", "Beaded Handbag", "Diamond Ring Set", "Bucket Hat", "Choker Necklace", "Tote Bag", "Anklet", "Hair Scrunchie"],
+    "Dresses": ["Floral Midi Dress", "Black Cocktail Dress", "Boho Maxi Dress", "Wrap Dress", "Little Black Dress", "Summer Sundress", "Evening Gown", "Shirt Dress", "Bodycon Dress", "A-Line Dress", "Slip Dress", "Sweater Dress", "Halter Dress", "Off-shoulder Dress", "Tunic Dress", "Sheath Dress"],
+    "Shoes": ["White Sneakers", "Block Heel Sandals", "Ankle Boots", "Ballet Flats", "High Heel Pumps", "Combat Boots", "Loafers", "Wedge Sandals", "Running Shoes", "Slip-on Sneakers", "Platform Shoes", "Oxford Shoes", "Mary Jane Shoes", "Espadrilles", "Hiking Boots", "Flip Flops"],
+    "Tops": ["Crop Top", "Silk Blouse", "Oversized Blazer", "Tank Top", "Button-down Shirt", "Sweater", "Cardigan", "Turtleneck", "Graphic T-shirt", "Off-shoulder Top", "Halter Top", "Polo Shirt", "Peasant Blouse", "Peplum Top", "Bodysuit", "Camisole"],
+    "Outerwear": ["Denim Jacket", "Trench Coat", "Leather Jacket", "Wool Coat", "Bomber Jacket", "Cardigan", "Blazer", "Puffer Jacket", "Windbreaker", "Peacoat", "Rain Jacket", "Fur Coat", "Varsity Jacket", "Cape Coat", "Shawl", "Poncho"],
+    "Bottoms": ["High-waisted Jeans", "Leather Pants", "Wide-leg Trousers", "Cargo Pants", "Midi Skirt", "Denim Shorts", "Yoga Pants", "Palazzo Pants", "Pleated Skirt", "Bike Shorts", "Flare Jeans", "Chinos", "Culottes", "Joggers", "Leggings", "Capri Pants"],
+    "Skirts": ["A-Line Skirt", "Pencil Skirt", "Pleated Skirt", "Mini Skirt", "Maxi Skirt", "Denim Skirt", "Wrap Skirt", "Tulle Skirt", "Leather Skirt", "Circle Skirt", "Midi Skirt", "Asymmetric Skirt", "Flared Skirt", "High-low Skirt", "Tiered Skirt", "Button-front Skirt"],
+    "Fabrics": ["Cotton Blend", "Silk Fabric", "Wool Material", "Linen Texture", "Denim Material", "Velvet Fabric", "Satin Finish", "Cashmere Blend", "Polyester Mix", "Rayon Fabric", "Chiffon Material", "Lace Fabric"],
+    "Colors": ["Pastel Pink", "Navy Blue", "Emerald Green", "Sunset Orange", "Classic Black", "Pure White", "Burgundy Red", "Lavender Purple", "Golden Yellow", "Coral Pink", "Sage Green", "Cream Beige"],
+    "Patterns": ["Floral Print", "Striped Pattern", "Polka Dots", "Animal Print", "Geometric Design", "Paisley Pattern", "Tie-dye Effect", "Plaid Design", "Abstract Print", "Botanical Pattern", "Vintage Motif", "Ethnic Design"],
+    "Occasions": ["Casual Everyday", "Business Professional", "Evening Party", "Beach Vacation", "Wedding Guest", "Date Night", "Workout Session", "Festival Outfit", "Formal Event", "Weekend Brunch", "Shopping Trip", "Travel Comfort"],
+    "Styles": ["Boho Chic", "Minimalist Style", "Vintage Retro", "Modern Classic", "Streetwear Urban", "Romantic Feminine", "Edgy Rock", "Preppy Style", "Artsy Creative", "Sporty Casual", "Elegant Sophisticated", "Trendy Fashion"]
+  },
+  "default_top_items_count": 10,
+  "default_base_predicted_score": 0.7,
+  "default_target_demographic": "Fashion-forward consumers",
+  "default_market_trend": "showing strong upward momentum",
+  "default_key_drivers": ["Social media influence", "Celebrity endorsements", "Seasonal demand"],
+  "default_target_age_group": "18-35",
+  "default_price_range": "Mid to premium",
+  "default_growth_potential": "High"
+}
